@@ -1,8 +1,22 @@
 import React from "react";
+import { motion } from "framer-motion";
 
-export default function Todo({ todo, index, deleteTodo, completeTodo }) {
+export default function Todo({
+  todo,
+  index,
+  deleteTodo,
+  completeTodo,
+  updateTodo,
+}) {
   return (
-    <li className="list_item" key={todo}>
+    <motion.li
+      animate={{
+        scale: [1, 2, 2, 1, 1],
+        rotate: [0, 0, 270, 270, 0],
+      }}
+      className="list_item"
+      key={todo}
+    >
       <label>
         <input
           onChange={() => completeTodo(index)}
@@ -10,18 +24,21 @@ export default function Todo({ todo, index, deleteTodo, completeTodo }) {
           checked={todo.isCompleted}
         />
         <div className="mark_text"></div>
-        <span
-          className="todo_text"
-          style={{
-            textDecoration: todo.isCompleted === true ? "line-through" : "", 
-          }}
-        >
-          {todo.content}
-        </span>
+        <form onChange={(e) => updateTodo(e, index)}>
+          <input
+            type="text"
+            className="todo_text"
+            style={{
+              textDecoration: todo.isCompleted === true ? "line-through" : "",
+            }}
+            defaultValue={todo.content}
+            onBlur
+          />
+        </form>
       </label>
       <span onClick={deleteTodo} className="del_todo">
         X
       </span>
-    </li>
+    </motion.li>
   );
 }
