@@ -35,17 +35,30 @@ function App() {
   };
 
   const selectAllFalse = () => {
-    setTodos(todos.map((todo) => [...todos, (todo.isCompleted = false)]));
+    const newTodos = todos.map((todo) => {
+      return {
+        ...todo,
+        isCompleted: false,
+      };
+    });
+    setTodos(newTodos);
   };
+
   const selectAllTrue = () => {
-    setTodos(todos.map((todo) => [...todos, (todo.isCompleted = true)]));
+    const newTodos = todos.map((todo) => {
+      return {
+        ...todo,
+        isCompleted: true,
+      };
+    });
+    setTodos(newTodos);
   };
 
   const handleSelectAll = (e) => {
     setSelected(!selected);
-    selected ? selectAllFalse() : selectAllTrue();
+    selected ? selectAllTrue() : selectAllFalse();
   };
-  console.log("checked==", selected);
+
   const clearCompleted = () => {
     setTodos(
       todos.filter((todo) => {

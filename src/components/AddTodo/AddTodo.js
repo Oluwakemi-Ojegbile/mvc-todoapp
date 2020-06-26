@@ -14,7 +14,6 @@ export default function AddTodo({ addTodo, todos, handleSelectAll }) {
     addTodo(todoInput);
     setTodoInput("");
   }
-  console.log("todos==", todos);
 
   return (
     <AddTodoStyle>

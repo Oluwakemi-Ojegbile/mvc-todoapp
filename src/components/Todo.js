@@ -9,14 +9,7 @@ export default function Todo({
   updateTodo,
 }) {
   return (
-    <motion.li
-      animate={{
-        scale: [1, 2, 2, 1, 1],
-        rotate: [0, 0, 270, 270, 0],
-      }}
-      className="list_item"
-      key={todo}
-    >
+    <motion.li positionTransition className="list_item" key={todo}>
       <label>
         <input
           onChange={() => completeTodo(index)}
@@ -32,7 +25,6 @@ export default function Todo({
               textDecoration: todo.isCompleted === true ? "line-through" : "",
             }}
             defaultValue={todo.content}
-            onBlur
           />
         </form>
       </label>
